@@ -7,12 +7,23 @@ public class CubeLogic : MonoBehaviour
     public int xCount;
     public int yCount;
     public int zCount;
-    public int[,,] Arr;
-    public int zeroCoord;
+    private int[,,] Arr;
+    private List<int> rand = new List<int>();
+    private int zeroCoord;
+
     // Start is called before the first frame update
     void Start()
     {
+        SetUp();
+        RandSetUp();
+        
+     }
+
+
+    private void SetUp()
+    {
         Arr = new int[xCount,yCount,zCount];
+        
         for (int x=0; x < xCount; x++)
         {
             for ( int y = 0; y < yCount; y++)
@@ -20,11 +31,49 @@ public class CubeLogic : MonoBehaviour
                 for (int z = 0; z < yCount; z++)
                 {
                     Arr[x, y,z] = x * 100 + y*10+z;
+                    rand.Add(Arr[x, y, z]);
                 }
             }
         }
-        Arr[0, 0,0] = 0;
-        zeroCoord = 0;
+        
+    }
+    
+    private void RandSetUp()
+    {
+        for (int x = 0; x < xCount; x++)
+        {
+            for (int y = 0; y < yCount; y++)
+            {
+                for (int z = 0; z < zCount; z++)
+                {
+                    int randomIndex = Random.Range(0, rand.Count);
+                    Arr[x, y, z] = rand[randomIndex];
+                    rand.RemoveAt(randomIndex);
+                    if (Arr[x, y, z] ==0) zeroCoord = x*100+y*10+z;
+
+                }
+            }
+        }
+        var elements = GameObject.FindGameObjectsWithTag("element");
+        for (int i = 0; i < elements.Length; i++)
+        {
+            elements[i].GetComponent<ElementLogic>().SetPos();
+        }
+    }
+
+    public Vector3 getStart(int elementId)
+    {
+        for (int x = 0; x < xCount; x++)
+        {
+            for (int y = 0; y < yCount; y++)
+            {
+                for (int z = 0; z < zCount; z++)
+                {
+                    if (Arr[x, y, z] == elementId) return new Vector3(x - (xCount - 1) * 0.5f, y - (yCount - 1) * 0.5f, z - (zCount - 1) * 0.5f);
+                }
+            }
+        }
+        return new Vector3(0,0,0);
     }
 
     public Vector3 Shift(int elementId)

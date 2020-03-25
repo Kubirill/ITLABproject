@@ -6,7 +6,13 @@ public class ElementLogic : MonoBehaviour
 {
     public int numElement;
     public GameObject parent;
-    private void OnMouseDown()
+
+    public void SetPos()
+    {
+        transform.localPosition = parent.GetComponent<CubeLogic>().getStart(numElement);
+    }
+
+        private void OnMouseDown()
     {
 
         transform.localPosition = parent.GetComponent<CubeLogic>().Shift(numElement);
