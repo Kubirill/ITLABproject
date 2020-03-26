@@ -9,12 +9,12 @@ public class ElementLogic : MonoBehaviour
 
     public void SetPos()
     {
+        
         transform.localPosition = parent.GetComponent<CubeLogic>().getStart(numElement);
     }
 
         private void OnMouseDown()
     {
-
         transform.localPosition = parent.GetComponent<CubeLogic>().Shift(numElement);
     }
 }
