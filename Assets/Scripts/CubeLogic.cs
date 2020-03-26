@@ -40,19 +40,11 @@ public class CubeLogic : MonoBehaviour
     
     private void RandSetUp()
     {
-        for (int x = 0; x < xCount; x++)
+        for (int i = 0; i < 100; i++)
         {
-            for (int y = 0; y < yCount; y++)
-            {
-                for (int z = 0; z < zCount; z++)
-                {
-                    int randomIndex = Random.Range(0, rand.Count);
-                    Arr[x, y, z] = rand[randomIndex];
-                    rand.RemoveAt(randomIndex);
-                    if (Arr[x, y, z] ==0) zeroCoord = x*100+y*10+z;
-
-                }
-            }
+            int vr = Random.Range(0, 2) * 100 + Random.Range(0, 2) * 10 + Random.Range(0, 2);
+            Debug.Log(vr);
+            Vector3 trash = Shift(vr);
         }
         var elements = GameObject.FindGameObjectsWithTag("element");
         for (int i = 0; i < elements.Length; i++)

@@ -39,8 +39,8 @@ public class RotateCube : MonoBehaviour
     public void OnMouseDrag()
     {
         Vector2 nowMouse;
-        if (Input.GetAxis("Jump")>0)
-        {
+        
+        
             nowMouse = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             if (startMouse != nowMouse)
             {
@@ -51,7 +51,7 @@ public class RotateCube : MonoBehaviour
                 startMouse = nowMouse;
             }
             
-        }
+        
     }
     
 }
