@@ -10,14 +10,25 @@ public class CubeLogic : MonoBehaviour
     private int[,,] Arr;
     private int zeroCoord;
     public GameObject[] elements;
+    private List<int> randVector = new List<int>();
 
     // Start is called before the first frame update
     void Start()
     {
+        SetRandList();
         SetUp();
         RandSetUp();
      }
 
+    private void SetRandList()
+    {
+        randVector.Add(100);
+        randVector.Add(-100);
+        randVector.Add(10);
+        randVector.Add(-10);
+        randVector.Add(1);
+        randVector.Add(-1);
+    }
 
     private void SetUp()
     {
@@ -80,9 +91,16 @@ public class CubeLogic : MonoBehaviour
     {
         for (int i = 0; i < xCount*yCount*zCount*10; i++)
         {
-            int vr = Random.Range(0, 2) * 100 + Random.Range(0, 2) * 10 + Random.Range(0, 2);
-            
-            Vector3 trash = Shift(vr);
+
+
+            int vr = randVector[Random.Range(0,6)];
+            int pointX = zeroCoord / 100 + vr / 100;
+            int pointY = (zeroCoord / 10) %10 + (vr / 10) % 10;
+            int pointZ = zeroCoord % 10 + vr % 10;
+            pointX = Mathf.Min(Mathf.Max(0, pointX), xCount-1);
+            pointY = Mathf.Min(Mathf.Max(0, pointY), yCount-1);
+            pointZ = Mathf.Min(Mathf.Max(0, pointZ), xCount-1);
+            Vector3 trash = Shift(Arr[ pointX,pointY,pointZ]);
             
         }
         var elements = GameObject.FindGameObjectsWithTag("element");
