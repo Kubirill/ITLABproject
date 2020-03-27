@@ -106,7 +106,7 @@ public class CubeLogic : MonoBehaviour
         var elements = GameObject.FindGameObjectsWithTag("element");
         for (int i = 0; i < elements.Length; i++)
         {
-            Debug.Log(i);
+            
             elements[i].GetComponent<ElementLogic>().SetPos();
         }
     }
@@ -147,7 +147,6 @@ public class CubeLogic : MonoBehaviour
                             newY = (zeroCoord / 10) % 10;
                             newZ = zeroCoord%10;
                             Arr[newX, newY, newZ] = elementId;
-                            Debug.Log("new coor" + newX+ newY+ newZ+ " el"+elementId);
                             Arr[x, y, z] = xCount*100+yCount*10+zCount-222;
                             zeroCoord = x * 100 + y * 10 + z;
                             return new Vector3(newX-(xCount-1)*0.5f, newY - (yCount - 1) * 0.5f, newZ - (zCount - 1) * 0.5f);

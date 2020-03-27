@@ -5,7 +5,10 @@ using UnityEngine;
 public class RotateCube : MonoBehaviour
 {
     private Vector2 startMouse;
-    
+    public float maxDistance;
+    public float minDistance;
+    public float speedWheel;
+    private float nowDistance;
     private Vector3 axisOne;
     private Vector3 axisTwo;
 
@@ -16,14 +19,20 @@ public class RotateCube : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        nowDistance = (maxDistance + minDistance ) / 2;
+        gameCube.position = new Vector3(nowDistance, gameCube.position.y, gameCube.position.z);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        nowDistance = nowDistance + Input.GetAxis("Mouse ScrollWheel") * speedWheel;
+        nowDistance= Mathf.Min(Mathf.Max(minDistance, nowDistance), maxDistance);
+        gameCube.position = new Vector3(nowDistance, gameCube.position.y, gameCube.position.z);
     }
+
+
+
     public void OnMouseDown()
     {
         startMouse = new Vector2 (Input.mousePosition.x, Input.mousePosition.y);
