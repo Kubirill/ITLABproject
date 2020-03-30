@@ -64,6 +64,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CubeLogic.cs" />
     <Compile Include="Assets\Scripts\ElementLogic.cs" />
+    <Compile Include="Assets\Scripts\MovingObjectPistonLevel.cs" />
+    <Compile Include="Assets\Scripts\PistonLogic.cs" />
     <Compile Include="Assets\Scripts\RotateCube.cs" />
     <Compile Include="Assets\Scripts\pistonLevel.cs" />
     <Reference Include="Unity.Timeline.Editor">

@@ -458,7 +458,7 @@ MonoBehaviour:
   minDistance: 1
   speedWheel: 2
   speedRotate: 1
-  gameCube: {fileID: 0}
+  gameCube: {fileID: 849260095}
   cameraPos: {fileID: 963194228}
   cameraVector: {fileID: 1999804387}
 --- !u!65 &963194230
@@ -472,8 +472,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 17.13, y: 5.62, z: 0.04}
-  m_Center: {x: 0, y: 0, z: 5.1}
+  m_Size: {x: 37.88, y: 13.12, z: 0.28}
+  m_Center: {x: 0, y: 0, z: 22.79}
 --- !u!1 &1040219932
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +484,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1040219933}
   - component: {fileID: 1040219934}
-  - component: {fileID: 1040219935}
+  - component: {fileID: 1040219936}
   m_Layer: 0
   m_Name: GameCube
   m_TagString: Untagged
@@ -549,19 +549,20 @@ MonoBehaviour:
   - {fileID: 4034352913653830319, guid: 7b7609eac3e6bb147b70cc4ccd776c3a, type: 3}
   - {fileID: 3928107790660823420, guid: 417d4a5ada145fb4f8fc33c3fb353269, type: 3}
   - {fileID: 5955175160493026617, guid: 42b84cf4fb09bf04999f7e2e3779ea9c, type: 3}
---- !u!65 &1040219935
-BoxCollider:
+--- !u!114 &1040219936
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1040219932}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f19cbb915feda140a4a67562763feb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Xcoor: 0
+  Ycoor: 0
 --- !u!1 &1500913794
 GameObject:
   m_ObjectHideFlags: 0
