@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CubeLogic : MonoBehaviour
 {
+    
+
     public int xCount;
     public int yCount;
     public int zCount;
@@ -11,6 +13,7 @@ public class CubeLogic : MonoBehaviour
     private int zeroCoord;
     public GameObject[] elements;
     private List<int> randVector = new List<int>();
+    
 
     // Start is called before the first frame update
     void Start()
@@ -93,14 +96,15 @@ public class CubeLogic : MonoBehaviour
         {
 
 
-            int vr = randVector[Random.Range(0,6)];
+            int vr = randVector[Random.Range(0,randVector.Count)];
             int pointX = zeroCoord / 100 + vr / 100;
             int pointY = (zeroCoord / 10) %10 + (vr / 10) % 10;
             int pointZ = zeroCoord % 10 + vr % 10;
             pointX = Mathf.Min(Mathf.Max(0, pointX), xCount-1);
             pointY = Mathf.Min(Mathf.Max(0, pointY), yCount-1);
-            pointZ = Mathf.Min(Mathf.Max(0, pointZ), xCount-1);
-            Vector3 trash = Shift(Arr[ pointX,pointY,pointZ]);
+            pointZ = Mathf.Min(Mathf.Max(0, pointZ), zCount-1);
+            Debug.Log(pointX + ", " + pointY + ", " + pointZ);
+            Vector3 trash = Shift(Arr[pointX,pointY,pointZ]);
             
         }
         var elements = GameObject.FindGameObjectsWithTag("element");
@@ -158,4 +162,6 @@ public class CubeLogic : MonoBehaviour
         }
         return new Vector3(0,0,0);
     }
+
+   
 }

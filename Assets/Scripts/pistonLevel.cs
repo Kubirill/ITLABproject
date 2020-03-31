@@ -27,6 +27,9 @@ public class pistonLevel : MonoBehaviour
     private void Start()
     {
         setLevel(level);
+        Debug.Log(transform.parent);
+        int maxCountBlock =Mathf.Max( gameCube.GetComponent<CubeLogic>().xCount, gameCube.GetComponent<CubeLogic>().yCount, gameCube.GetComponent<CubeLogic>().zCount);
+        gameCube.transform.localScale = new Vector3(0.95f / maxCountBlock, 0.95f / maxCountBlock, 0.95f / maxCountBlock);
     }
 
     public string  getLevel(int lvl)
@@ -214,6 +217,7 @@ public class pistonLevel : MonoBehaviour
     }
     public void changePosition(int startX,int startY,int endX,int endY)
     {
+        char checkFinish = Arr[endX, endY];
         Arr[endX, endY] = Arr[startX, startY];
         foreach (GameObject mObj in movingObjects)
         {
@@ -226,6 +230,11 @@ public class pistonLevel : MonoBehaviour
         }
         
         Arr[startX, startY] = '0';
+        if (checkFinish == '7')
+        {
+            if (Arr[endX, endY] == '5') Win();
+            else Lose();
+        }
     }
     private void changePiston(int xPiston, int yPiston)
     {
@@ -252,4 +261,28 @@ public class pistonLevel : MonoBehaviour
         }
     }
 
+    private void Win()
+    {
+        gameCube.transform.parent = null;
+        gameObject.AddComponent<Rigidbody>();
+        transform.position = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
+        gameObject.GetComponent<Rigidbody>().mass = 100;
+
+        Debug.Log("win");
+    }
+
+    private void Lose()
+    {
+        Debug.Log("lose");
+    }
+
+    public void Update()
+    {
+        if (transform.position.y < -5)
+        {
+            GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+            cam.GetComponent<RotateCube>().newTarget(gameCube.transform);
+        }
+        if (transform.position.y < -50) Destroy(gameObject);
+    }
 }
