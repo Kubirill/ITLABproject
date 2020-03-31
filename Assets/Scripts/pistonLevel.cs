@@ -107,11 +107,7 @@ public class pistonLevel : MonoBehaviour
                         }
                     }
                 }
-                else
-                {
-                    if ((Arr[xCoor + 2, yCoor] != '0') && (Arr[xCoor + 2, yCoor] != '8'))changePosition(xCoor + 2, yCoor, xCoor + 1, yCoor);
-
-                }
+                else changePiston(xCoor, yCoor, 1);
 
             }
 
@@ -131,14 +127,8 @@ public class pistonLevel : MonoBehaviour
                         }
                     }
                 }
-                else
-                {
-                    changePiston(xCoor, yCoor);
-                    if ((Arr[xCoor, yCoor + 2] != '0') && (Arr[xCoor, yCoor + 2] != '8'))changePosition(xCoor, yCoor + 2, xCoor , yCoor+ 1);
-                    
-                }
-
-
+                else changePiston(xCoor, yCoor,2);
+                
             }
 
             if (Arr[xCoor, yCoor] =='3')
@@ -158,12 +148,8 @@ public class pistonLevel : MonoBehaviour
                         }
                     }
                 }
-                else
-                {
-                    changePiston(xCoor, yCoor);
-                    if ((Arr[xCoor -2, yCoor] != '0') && (Arr[xCoor - 2, yCoor] != '8'))changePosition(xCoor - 2, yCoor, xCoor - 1, yCoor);
-                  
-                }
+                else changePiston(xCoor, yCoor,3);
+                
 
             }
 
@@ -185,13 +171,8 @@ public class pistonLevel : MonoBehaviour
                     }
 
                 }
-                else
-                {
-                    changePiston(xCoor, yCoor);
-                    if ((Arr[xCoor, yCoor - 2] != '0') && (Arr[xCoor, yCoor - 2] != '8'))changePosition(xCoor, yCoor - 2, xCoor, yCoor - 1);
-                    
-                }
-
+                else changePiston(xCoor, yCoor,4);
+                
             }
         
         
@@ -231,7 +212,7 @@ public class pistonLevel : MonoBehaviour
             }
         }
     }
-    private void changePosition(int startX,int startY,int endX,int endY)
+    public void changePosition(int startX,int startY,int endX,int endY)
     {
         Arr[endX, endY] = Arr[startX, startY];
         foreach (GameObject mObj in movingObjects)
@@ -258,5 +239,17 @@ public class pistonLevel : MonoBehaviour
 
         }
     }
-    
+    private void changePiston(int xPiston, int yPiston,int direct)
+    {
+        foreach (GameObject mObj in movingObjects)
+        {
+            if ((mObj.GetComponent<MovingObjectPistonLevel>().Xcoor == xPiston) && (mObj.GetComponent<MovingObjectPistonLevel>().Ycoor == yPiston))
+            {
+                mObj.GetComponent<PistonLogic>().Open(direct);
+                break;
+            }
+
+        }
+    }
+
 }
