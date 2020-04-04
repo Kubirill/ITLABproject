@@ -65,11 +65,11 @@
     <Compile Include="Assets\Scripts\CubeLogic.cs" />
     <Compile Include="Assets\Scripts\ElementLogic.cs" />
     <Compile Include="Assets\Scripts\Inventory.cs" />
+    <Compile Include="Assets\Scripts\Item.cs" />
+    <Compile Include="Assets\Scripts\ItemData.cs" />
     <Compile Include="Assets\Scripts\MovingObjectPistonLevel.cs" />
     <Compile Include="Assets\Scripts\PistonLogic.cs" />
     <Compile Include="Assets\Scripts\RotateCube.cs" />
-    <Compile Include="Assets\Scripts\infObjects.cs" />
-    <Compile Include="Assets\Scripts\oneObjectInventory.cs" />
     <Compile Include="Assets\Scripts\pistonLevel.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Unity/IT Lab/ITLABproject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

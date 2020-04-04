@@ -103,7 +103,6 @@ public class CubeLogic : MonoBehaviour
             pointX = Mathf.Min(Mathf.Max(0, pointX), xCount-1);
             pointY = Mathf.Min(Mathf.Max(0, pointY), yCount-1);
             pointZ = Mathf.Min(Mathf.Max(0, pointZ), zCount-1);
-            Debug.Log(pointX + ", " + pointY + ", " + pointZ);
             Vector3 trash = Shift(Arr[pointX,pointY,pointZ]);
             
         }

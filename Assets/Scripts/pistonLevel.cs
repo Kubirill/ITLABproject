@@ -27,7 +27,6 @@ public class pistonLevel : MonoBehaviour
     private void Start()
     {
         setLevel(level);
-        Debug.Log(transform.parent);
         int maxCountBlock =Mathf.Max( gameCube.GetComponent<CubeLogic>().xCount, gameCube.GetComponent<CubeLogic>().yCount, gameCube.GetComponent<CubeLogic>().zCount);
         gameCube.transform.localScale = new Vector3(0.95f / maxCountBlock, 0.95f / maxCountBlock, 0.95f / maxCountBlock);
     }

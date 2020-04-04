@@ -370,6 +370,7 @@ GameObject:
   - component: {fileID: 963194230}
   - component: {fileID: 963194229}
   - component: {fileID: 963194231}
+  - component: {fileID: 963194232}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -491,12 +492,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Items:
-  - image: {fileID: 2800000, guid: 0c4fb97f9f3ab4a4189414522e308525, type: 3}
-    nameObj: obj1
-  - image: {fileID: 2800000, guid: 89e8d68772dd9614eaadc4db2a419bd7, type: 3}
-    nameObj: obj2
-  - image: {fileID: 2800000, guid: 1b69b8721ec98984d90286fd4ef799f5, type: 3}
-    nameObj: obj3
+  - Textura: {fileID: 2800000, guid: 0c4fb97f9f3ab4a4189414522e308525, type: 3}
+    Name: obj1
+  - Textura: {fileID: 2800000, guid: 89e8d68772dd9614eaadc4db2a419bd7, type: 3}
+    Name: obj2
+  - Textura: {fileID: 2800000, guid: 1b69b8721ec98984d90286fd4ef799f5, type: 3}
+    Name: obj3
+--- !u!114 &963194232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae752395151684f438d159cded05234d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ButtonWidth: 40
+  ButtonHeight: 40
 --- !u!1 &1040219932
 GameObject:
   m_ObjectHideFlags: 0
