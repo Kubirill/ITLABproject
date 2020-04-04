@@ -71,6 +71,8 @@
     <Compile Include="Assets\Scripts\PistonLogic.cs" />
     <Compile Include="Assets\Scripts\RotateCube.cs" />
     <Compile Include="Assets\Scripts\pistonLevel.cs" />
+    <Compile Include="Assets\Scripts\traceryLogic.cs" />
+    <Compile Include="Assets\Scripts\zoneLogic.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Unity/IT Lab/ITLABproject/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

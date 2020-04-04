@@ -12,21 +12,35 @@ public class Inventory : MonoBehaviour
 
     int invRows = 1; //количество колонок
     int invColumns = 4; //количество столбцов
-    Rect inventoryWindowRect = new Rect(10, 160,
-    170, 70); //область окна
+    Rect inventoryWindowRect = new Rect(10, 200, 170, 70); //область окна
     Rect inventoryBoxRect = new Rect(); //область окна с изображением иконки
-    bool isDraggable; //перемещение предмета
+    public bool isDraggable; //перемещение предмета
     Item selectItem; //вспомогательная переменная куда заносим предмет инвентаря
     Texture2D dragTexture; //текстура которая отображается при перетягивании предмета в инвентаре
 
-    Dictionary<int, Item> InventoryPlayer = new Dictionary<int, Item>(); //словарь содержащий предметы инвентаря
+     Dictionary<int, Item> InventoryPlayer = new Dictionary<int, Item>(); //словарь содержащий предметы инвентаря
 
     void Start()
     {
-        //добавляем предметы в инвентарь
-        InventoryPlayer.Add(0, ItemData._ItemData.ItemGen(0));
-        InventoryPlayer.Add(1, ItemData._ItemData.ItemGen(1));
-        InventoryPlayer.Add(2, ItemData._ItemData.ItemGen(2));
+        
+    }
+
+    public void AddElement(int id)
+    {
+        bool exit = false;
+        for (int y = 0; y < invRows; y++)
+        {
+            for (int x = 0; x < invColumns; x++)
+            {
+                if (!InventoryPlayer.ContainsKey(x + y * invColumns))
+                {
+                    InventoryPlayer.Add(x + y * invColumns, ItemData._ItemData.ItemGen(id));
+                    exit = true;
+                }
+                if (exit) break;
+            }
+            if (exit) break;
+        }
     }
 
     // Update is called once per frame
@@ -93,5 +107,13 @@ public class Inventory : MonoBehaviour
             }
         }
         GUI.DragWindow();
+    }
+
+    public string UseElement()
+    {
+        string var = selectItem.Name;
+        isDraggable = false;
+        selectItem = null;
+        return var;
     }
 }
