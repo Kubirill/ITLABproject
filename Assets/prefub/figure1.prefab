@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
+  angleSimetry: 60
   cam: {fileID: 0}
   flip: 0
 --- !u!65 &69024544515981892

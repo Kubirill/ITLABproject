@@ -5,6 +5,7 @@ using UnityEngine;
 public class traceryLogic : MonoBehaviour
 {
     public int id;
+    public int angleSimetry;
     public GameObject cam;
     public bool flip;
 

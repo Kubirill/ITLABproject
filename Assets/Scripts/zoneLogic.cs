@@ -9,16 +9,16 @@ public struct elementPosition
     public int id;
     public static bool operator ==(elementPosition elsOne, elementPosition elsAns)
     {
-        //Debug.Log(elsOne.angle + " " + elsAns.angle + " " + elsOne.flipped + " " + elsAns.flipped + " " + elsOne.id + " " + elsAns.id);
+        Debug.Log(elsOne.angle + " " + elsAns.angle + " " + elsOne.flipped + " " + elsAns.flipped + " " + elsOne.id + " " + elsAns.id);
         if ((elsOne.id== elsAns.id)&& (elsOne.flipped == elsAns.flipped))
             {
             int partAngle;
-            if (elsOne.gObj.name == "figure1") partAngle = 60;
-            else partAngle = 90;
+            if (elsOne.gObj.GetComponent<traceryLogic>() != null) partAngle = elsOne.gObj.GetComponent<traceryLogic>().angleSimetry;
+            else partAngle = elsAns.gObj.GetComponent<traceryLogic>().angleSimetry;
             float angleOne = (elsOne.angle + 360) % partAngle;
             float angleAns = (elsAns.angle + 360) % partAngle;
-            
-            if (Mathf.Abs(angleOne - angleAns) < 10) return true;
+            Debug.Log(angleOne + " " + angleAns);
+            if ((Mathf.Abs(angleOne - angleAns) < 10)||(Mathf.Abs(angleOne - angleAns+partAngle) < 10) || (Mathf.Abs(angleOne - angleAns - partAngle) < 10)) return true;
             else return false;
             }
         else return false;
@@ -34,6 +34,9 @@ public class zoneLogic : MonoBehaviour
     public GameObject[] answersElements;
     public GameObject cam;
     public Transform answerBlock;
+    public GameObject doorDown;
+    public GameObject doorUp;
+    private bool finish;
     //public GameObject[] elementsOnScene = new GameObject[3];
     public float speedRotate=1;
     elementPosition[] elementsOnScene = new elementPosition[3];
@@ -91,76 +94,104 @@ public class zoneLogic : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (cam.GetComponent<Inventory>().isDraggable)
+        if (!finish)
         {
-            string nameEl = cam.GetComponent<Inventory>().UseElement() ;
-            foreach (GameObject element in elements)
+
+            if (cam.GetComponent<Inventory>().isDraggable)
             {
-                if (element.name == nameEl)
+                string nameEl = cam.GetComponent<Inventory>().UseElement();
+                foreach (GameObject element in elements)
                 {
-                    elementsOnScene[index].gObj = Instantiate(element, transform.position- new Vector3(0,0,index*0.1f+0.2f), Quaternion.identity);
-                    elementsOnScene[index].gObj.GetComponent<traceryLogic>().cam = cam;
-                    elementsOnScene[index].gObj.GetComponent<BoxCollider>().enabled = false;
-                    elementsOnScene[index].flipped = false;
-                    elementsOnScene[index].id = elementsOnScene[index].gObj.GetComponent<traceryLogic>().id;
-                    elementsOnScene[index].angle = elementsOnScene[index].gObj.transform.rotation.z;
-                    index++;
+                    if (element.name == nameEl)
+                    {
+                        elementsOnScene[index].gObj = Instantiate(element, transform.position - new Vector3(0, 0, index * 0.1f + 0.2f), Quaternion.identity);
+                        elementsOnScene[index].gObj.GetComponent<traceryLogic>().cam = cam;
+                        elementsOnScene[index].gObj.GetComponent<BoxCollider>().enabled = false;
+                        elementsOnScene[index].flipped = false;
+                        elementsOnScene[index].id = elementsOnScene[index].gObj.GetComponent<traceryLogic>().id;
+                        elementsOnScene[index].angle = elementsOnScene[index].gObj.transform.rotation.z;
+                        index++;
+                    }
+
                 }
-                
+
+
             }
-           
-            
+            else
+            {
+                if (index > 0)
+                {
+                    index = index - 1;
+                    cam.GetComponent<Inventory>().AddElement(elementsOnScene[index].gObj.GetComponent<traceryLogic>().id);
+                    Destroy(elementsOnScene[index].gObj);
+                    elementsOnScene[index].gObj = null;
+
+                }
+            }
         }
-        else
+    }
+
+    private void Update()
+    {
+        if (!finish)
         {
             if (index > 0)
             {
-                index =index-1;
-                cam.GetComponent<Inventory>().AddElement(elementsOnScene[index].gObj.GetComponent<traceryLogic>().id);
-                Destroy(elementsOnScene[index].gObj);
-                elementsOnScene[index].gObj = null;
-                
-            }
-        }
-    }
-    private void Update()
-    {
-        if (index > 0)
-        {
-            if (Input.GetKeyDown(KeyCode.F))
-            {
-                elementsOnScene[index - 1].flipped = !elementsOnScene[index - 1].flipped;
-                if (elementsOnScene[index - 1].flipped) elementsOnScene[index - 1].gObj.transform.position = elementsOnScene[index - 1].gObj.transform.position + new Vector3(0, 0, 0.1f);
-                else elementsOnScene[index - 1].gObj.transform.position = elementsOnScene[index - 1].gObj.transform.position + new Vector3(0, 0, -0.1f);
-                elementsOnScene[index - 1].gObj.transform.Rotate(new Vector3(0, 1, 0), 180);
-
-            }
-            if (Input.GetKey(KeyCode.Q))
-            {
-                if (!elementsOnScene[index - 1].flipped) elementsOnScene[index - 1].gObj.transform.Rotate(new Vector3(0, 0, 1), speedRotate);
-                else elementsOnScene[index - 1].gObj.transform.Rotate(new Vector3(0, 0, 1), -speedRotate);
-                elementsOnScene[index-1].angle = elementsOnScene[index-1].gObj.transform.localEulerAngles.z;
-
-            }
-            if (Input.GetKey(KeyCode.E))
-            {
-
-                if (!elementsOnScene[index - 1].flipped)  elementsOnScene[index - 1].gObj.transform.Rotate(new Vector3(0, 0, 1), -speedRotate);
-                else elementsOnScene[index - 1].gObj.transform.Rotate(new Vector3(0, 0, 1), speedRotate);
-                elementsOnScene[index-1].angle = elementsOnScene[index-1].gObj.transform.localEulerAngles.z;
-            }
-        }  
-        if (index == 3)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                
-                for (int i=0; i < 3; i++)
+                if (Input.GetKeyDown(KeyCode.F))
                 {
-                    if(elementsOnScene[i]==answer[i]) Debug.Log("equal");
-                    else Debug.Log("not");
+                    elementsOnScene[index - 1].flipped = !elementsOnScene[index - 1].flipped;
+                    if (elementsOnScene[index - 1].flipped) elementsOnScene[index - 1].gObj.transform.position = elementsOnScene[index - 1].gObj.transform.position + new Vector3(0, 0, 0.1f);
+                    else elementsOnScene[index - 1].gObj.transform.position = elementsOnScene[index - 1].gObj.transform.position + new Vector3(0, 0, -0.1f);
+                    elementsOnScene[index - 1].gObj.transform.Rotate(new Vector3(0, 1, 0), 180);
+
+                }
+                if (Input.GetKey(KeyCode.Q))
+                {
+                    if (!elementsOnScene[index - 1].flipped) elementsOnScene[index - 1].gObj.transform.Rotate(new Vector3(0, 0, 1), speedRotate);
+                    else elementsOnScene[index - 1].gObj.transform.Rotate(new Vector3(0, 0, 1), -speedRotate);
+                    elementsOnScene[index - 1].angle = elementsOnScene[index - 1].gObj.transform.localEulerAngles.z;
+
+                }
+                if (Input.GetKey(KeyCode.E))
+                {
+
+                    if (!elementsOnScene[index - 1].flipped) elementsOnScene[index - 1].gObj.transform.Rotate(new Vector3(0, 0, 1), -speedRotate);
+                    else elementsOnScene[index - 1].gObj.transform.Rotate(new Vector3(0, 0, 1), speedRotate);
+                    elementsOnScene[index - 1].angle = elementsOnScene[index - 1].gObj.transform.localEulerAngles.z;
+                }
+            }
+            if (index == 3)
+            {
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    int correctCount = 0;
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (elementsOnScene[i] == answer[i]) correctCount++;
+                        else Debug.Log("not");
+                    }
+                    if (correctCount >= 3)
+                    {
+                        finish = true;
+                        for (int i = 0; i < 3; i++) elementsOnScene[i].gObj.transform.parent = transform;
+                    }
                 }
             }
         }
+        else
+        {
+            doorDown.transform.position = doorDown.transform.position - new Vector3(0, speedRotate*5, 0)* Time.deltaTime;
+            doorUp.transform.position = doorUp.transform.position + new Vector3(0, speedRotate*5, 0)*Time.deltaTime;
+            if (doorDown.transform.position.y < -20)
+            {
+                
+                Destroy(doorDown);
+                Destroy(doorUp);
+            }
+            cam.GetComponent<RotateCube>().enabled = true;
+            cam.GetComponent<Inventory>().enabled = false;
+        }
     }
+    
+        
 }

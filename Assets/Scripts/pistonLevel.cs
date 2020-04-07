@@ -275,12 +275,15 @@ public class pistonLevel : MonoBehaviour
         Debug.Log("lose");
     }
 
+    private bool findTarget;
+
     public void Update()
     {
-        if (transform.position.y < -5)
+        if ((transform.position.y < -5)&&(!findTarget))
         {
             GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
             cam.GetComponent<RotateCube>().newTarget(gameCube.transform);
+            findTarget = true;
         }
         if (transform.position.y < -50) Destroy(gameObject);
     }

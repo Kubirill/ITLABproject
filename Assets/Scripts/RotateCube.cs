@@ -88,6 +88,7 @@ public class RotateCube : MonoBehaviour
     {
         minDistance = 2;
         targetLook = target;
+       // transform.LookAt(targetLook);
         targetLook.parent=transform;
         nowDistance = (maxDistance + minDistance) / 2;
         active = true;
