@@ -34,6 +34,7 @@ public class pistonLevel : MonoBehaviour
     public string  getLevel(int lvl)
     {
         if (lvl == 1) return "558722880453100088040388448";
+        if (lvl == 2) return "558227815408800031040884888";
         else return "";
     }
     public void setLevel (int lvl)
@@ -266,8 +267,7 @@ public class pistonLevel : MonoBehaviour
         gameObject.AddComponent<Rigidbody>();
         transform.position = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
         gameObject.GetComponent<Rigidbody>().mass = 100;
-
-        Debug.Log("win");
+        
     }
 
     private void Lose()

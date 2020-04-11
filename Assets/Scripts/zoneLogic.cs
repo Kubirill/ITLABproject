@@ -9,7 +9,7 @@ public struct elementPosition
     public int id;
     public static bool operator ==(elementPosition elsOne, elementPosition elsAns)
     {
-        Debug.Log(elsOne.angle + " " + elsAns.angle + " " + elsOne.flipped + " " + elsAns.flipped + " " + elsOne.id + " " + elsAns.id);
+        //Debug.Log(elsOne.angle + " " + elsAns.angle + " " + elsOne.flipped + " " + elsAns.flipped + " " + elsOne.id + " " + elsAns.id);
         if ((elsOne.id== elsAns.id)&& (elsOne.flipped == elsAns.flipped))
             {
             int partAngle;
@@ -17,7 +17,6 @@ public struct elementPosition
             else partAngle = elsAns.gObj.GetComponent<traceryLogic>().angleSimetry;
             float angleOne = (elsOne.angle + 360) % partAngle;
             float angleAns = (elsAns.angle + 360) % partAngle;
-            Debug.Log(angleOne + " " + angleAns);
             if ((Mathf.Abs(angleOne - angleAns) < 10)||(Mathf.Abs(angleOne - angleAns+partAngle) < 10) || (Mathf.Abs(angleOne - angleAns - partAngle) < 10)) return true;
             else return false;
             }
@@ -168,11 +167,14 @@ public class zoneLogic : MonoBehaviour
                     for (int i = 0; i < 3; i++)
                     {
                         if (elementsOnScene[i] == answer[i]) correctCount++;
-                        else Debug.Log("not");
                     }
                     if (correctCount >= 3)
                     {
                         finish = true;
+                        cam.GetComponent<RotateCube>().enabled = true;
+                        cam.GetComponent<Inventory>().enabled = false;
+                        GameObject cube = GameObject.FindGameObjectWithTag("Cube");
+                        cube.GetComponent<CubeLogic>().CreateCube();
                         for (int i = 0; i < 3; i++) elementsOnScene[i].gObj.transform.parent = transform;
                     }
                 }
@@ -188,8 +190,8 @@ public class zoneLogic : MonoBehaviour
                 Destroy(doorDown);
                 Destroy(doorUp);
             }
-            cam.GetComponent<RotateCube>().enabled = true;
-            cam.GetComponent<Inventory>().enabled = false;
+            
+            
         }
     }
     

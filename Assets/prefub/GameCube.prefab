@@ -1,0 +1,93 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7481277612590302646
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7481277612590302647}
+  - component: {fileID: 7481277612590302644}
+  - component: {fileID: 7481277612590302602}
+  m_Layer: 0
+  m_Name: GameCube
+  m_TagString: Cube
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7481277612590302647
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7481277612590302646}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.475, y: 0.475, z: 0.475}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7481277612590302644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7481277612590302646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e737bcf777332b143a93ceaa76bfec7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xCount: 2
+  yCount: 2
+  zCount: 2
+  selfObject: {fileID: 7481277612590302646}
+  elements:
+  - {fileID: 3712200979862992044, guid: f2db67b62a480b944a59dbb4f850b274, type: 3}
+  - {fileID: 4406866706739942300, guid: c1098bb1aac6f664ab55d8f74c804d7a, type: 3}
+  - {fileID: 6084069075532207075, guid: 91fa387ebe7c68f4ca7543b54b08cee0, type: 3}
+  - {fileID: 6682875991293353926, guid: 4c8aa1b84bdf421449e033e3da5f4d9b, type: 3}
+  - {fileID: 3294182130576012482, guid: 2e1fcd1fc002a6c47bd3ac9edb12884a, type: 3}
+  - {fileID: 2612157059065060321, guid: f21a74b49d8b0f04180419937f52e0a7, type: 3}
+  - {fileID: 5946773211432496337, guid: 25599ad1830bd5b4895a34015972e73c, type: 3}
+  - {fileID: 5337948541215670609, guid: 1d0049c7c1fba614db9918e550ef7732, type: 3}
+  - {fileID: 708898325459221864, guid: 4bc7d494546a89244a652351b282758b, type: 3}
+  - {fileID: 413693583293943623, guid: 778060c10aaf37649ad371839f50fbd6, type: 3}
+  - {fileID: 5670757755984303816, guid: 71b89857b2c92634097e7394fb516596, type: 3}
+  - {fileID: 3996439159156979627, guid: 23431af41a3bdb442a33ecd2d9ff4468, type: 3}
+  - {fileID: 8448898407457211549, guid: 833d4def27d5c1d44be61f6a49f2128f, type: 3}
+  - {fileID: 2485713042738027627, guid: ce09e8cfacffb6d4e80939b641599dd9, type: 3}
+  - {fileID: 601627064757708451, guid: 6d50216c393ba2448b6c81a1dbfac070, type: 3}
+  - {fileID: 919738265888581768, guid: 3e444a321bfe5ec4b83deefcd4f0049d, type: 3}
+  - {fileID: 8170024801144341052, guid: 66f5552449cde0d4ba87ee16700c46ad, type: 3}
+  - {fileID: 4566618066247068091, guid: d389cfa23d361ec4ea563d040594d83d, type: 3}
+  - {fileID: 5761300540060811395, guid: d14152e9b782f634293597c9f203491b, type: 3}
+  - {fileID: 6202294272680307276, guid: 75d02cb1ddc14974eaca8896706965a5, type: 3}
+  - {fileID: 5185549397620056185, guid: 8ef8aa212f3830344b2e752bd29ccc8f, type: 3}
+  - {fileID: 7101129823885299408, guid: 47b74e4e299b5174d993bdb663a84d13, type: 3}
+  - {fileID: 449409529298568615, guid: cf458e4821bb17647a3429dcb2447687, type: 3}
+  - {fileID: 7657263457620518608, guid: f792dd1ff181ae7409e1840278512198, type: 3}
+  - {fileID: 4034352913653830319, guid: 7b7609eac3e6bb147b70cc4ccd776c3a, type: 3}
+  - {fileID: 3928107790660823420, guid: 417d4a5ada145fb4f8fc33c3fb353269, type: 3}
+  - {fileID: 5955175160493026617, guid: 42b84cf4fb09bf04999f7e2e3779ea9c, type: 3}
+  lvl: 1
+--- !u!114 &7481277612590302602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7481277612590302646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f19cbb915feda140a4a67562763feb4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Xcoor: 0
+  Ycoor: 0
