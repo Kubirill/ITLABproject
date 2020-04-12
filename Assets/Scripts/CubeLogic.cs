@@ -17,16 +17,12 @@ public class CubeLogic : MonoBehaviour
 
     public void CreateCube() // запуск создания и перемешивания кубика
     {
-        Arr = null;
+       
         SetRandList();
         SetUp();
         RandSetUp();
         getArray();
-        GameObject[] elementsOnscene = GameObject.FindGameObjectsWithTag("element");//найти все элементы кубика
-        for (int i = 0; i < elementsOnscene.Length; i++)//для каждого элемента
-        {
-            elementsOnscene[i].GetComponent<ElementLogic>().SetPos();//вызвать функцию получения позиции
-        }
+        
     }
 
     private void SetRandList()//заполнить возможными изменениями координаты пустой клетки
@@ -184,17 +180,17 @@ public class CubeLogic : MonoBehaviour
         }
         if (correct)//еслли ошибок не найдено то перейти на следующий уровень
         {
-            Debug.Log("win");
-            lvl++;
-            GameObject trash = GameObject.FindGameObjectWithTag("pistonLevel");
-            if (trash == null) NextLevel("Level2");
+            NextLevel();
         }
 
     }
-    public void NextLevel(string nameScene)
+    public void NextLevel()
     {
         Debug.Log("next");
-        SceneManager.LoadScene(1, LoadSceneMode.Single);
+        GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+        cam.GetComponent<Menu>().Save(lvl, 1);
+        lvl++;
+        SceneManager.LoadScene("Level"+lvl, LoadSceneMode.Single);
     }
 
     public void getArray()

@@ -47,6 +47,7 @@ public class zoneLogic : MonoBehaviour
     {
         setAnswerTraceryPazzle();
         CreateVisualAnswer();
+
     }
 
     private void setAnswerTraceryPazzle()
@@ -176,6 +177,7 @@ public class zoneLogic : MonoBehaviour
                         GameObject cube = GameObject.FindGameObjectWithTag("Cube");
                         cube.GetComponent<CubeLogic>().CreateCube();
                         for (int i = 0; i < 3; i++) elementsOnScene[i].gObj.transform.parent = transform;
+                        cam.GetComponent<Menu>().Save(level-1, 2);
                     }
                 }
             }
@@ -186,9 +188,9 @@ public class zoneLogic : MonoBehaviour
             doorUp.transform.position = doorUp.transform.position + new Vector3(0, speedRotate*5, 0)*Time.deltaTime;
             if (doorDown.transform.position.y < -20)
             {
-                
                 Destroy(doorDown);
                 Destroy(doorUp);
+                for (int i = 0; i < 3; i++) Destroy(elementsOnScene[i].gObj);
             }
             
             

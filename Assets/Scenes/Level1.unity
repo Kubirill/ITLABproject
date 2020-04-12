@@ -585,6 +585,7 @@ GameObject:
   - component: {fileID: 963194229}
   - component: {fileID: 963194231}
   - component: {fileID: 963194232}
+  - component: {fileID: 963194233}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -727,6 +728,19 @@ MonoBehaviour:
   ButtonWidth: 40
   ButtonHeight: 40
   isDraggable: 0
+--- !u!114 &963194233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 554e8975082c6904e97e2a439e79f568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blocks: []
 --- !u!1 &1040219932 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7481277612590302646, guid: 917b9eb9a5514ba44816191ee0c98db6,
@@ -1246,6 +1260,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 849260095}
     m_Modifications:
+    - target: {fileID: 7481277612590302644, guid: 917b9eb9a5514ba44816191ee0c98db6,
+        type: 3}
+      propertyPath: xCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7481277612590302644, guid: 917b9eb9a5514ba44816191ee0c98db6,
+        type: 3}
+      propertyPath: yCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7481277612590302644, guid: 917b9eb9a5514ba44816191ee0c98db6,
+        type: 3}
+      propertyPath: zCount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7481277612590302646, guid: 917b9eb9a5514ba44816191ee0c98db6,
         type: 3}
       propertyPath: m_Name

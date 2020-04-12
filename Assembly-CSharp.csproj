@@ -67,9 +67,11 @@
     <Compile Include="Assets\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
     <Compile Include="Assets\Scripts\ItemData.cs" />
+    <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\MovingObjectPistonLevel.cs" />
     <Compile Include="Assets\Scripts\PistonLogic.cs" />
     <Compile Include="Assets\Scripts\RotateCube.cs" />
+    <Compile Include="Assets\Scripts\bottonMenu.cs" />
     <Compile Include="Assets\Scripts\pistonLevel.cs" />
     <Compile Include="Assets\Scripts\traceryLogic.cs" />
     <Compile Include="Assets\Scripts\zoneLogic.cs" />

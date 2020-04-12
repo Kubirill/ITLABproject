@@ -10,6 +10,7 @@ public class ElementLogic : MonoBehaviour
  
     public void SetPos()
     {
+        parent = GameObject.FindGameObjectWithTag("Cube");
         transform.localPosition = parent.GetComponent<CubeLogic>().getStart(numElement)-new Vector3(0,0,0.5f);// получить текущие координаты блока и переместиться туда
     }
 

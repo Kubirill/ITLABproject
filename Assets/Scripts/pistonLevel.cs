@@ -29,12 +29,15 @@ public class pistonLevel : MonoBehaviour
         setLevel(level);
         int maxCountBlock =Mathf.Max( gameCube.GetComponent<CubeLogic>().xCount, gameCube.GetComponent<CubeLogic>().yCount, gameCube.GetComponent<CubeLogic>().zCount);
         gameCube.transform.localScale = new Vector3(0.95f / maxCountBlock, 0.95f / maxCountBlock, 0.95f / maxCountBlock);
+        GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+        if (cam.GetComponent<Menu>().GetStage() > 2) Win();
     }
 
     public string  getLevel(int lvl)
     {
         if (lvl == 1) return "558722880453100088040388448";
-        if (lvl == 2) return "558227815408800031040884888";
+        if (lvl == 2) return "558822880203100088025387848";
+        if (lvl == 3) return "558227815408800031040884888";
         else return "";
     }
     public void setLevel (int lvl)
@@ -267,7 +270,8 @@ public class pistonLevel : MonoBehaviour
         gameObject.AddComponent<Rigidbody>();
         transform.position = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
         gameObject.GetComponent<Rigidbody>().mass = 100;
-        
+        GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+        cam.GetComponent<Menu>().Save(level-1, 3);
     }
 
     private void Lose()
