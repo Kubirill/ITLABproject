@@ -48,6 +48,16 @@ public class zoneLogic : MonoBehaviour
         setAnswerTraceryPazzle();
         CreateVisualAnswer();
 
+        if (cam.GetComponent<Menu>().GetStage() > 1)
+        {
+            finish = true;
+            cam.GetComponent<RotateCube>().enabled = true;
+            cam.GetComponent<Inventory>().enabled = false;
+            GameObject cube = GameObject.FindGameObjectWithTag("Cube");
+            cube.GetComponent<CubeLogic>().CreateCube();
+            for (int i = 0; i < 3; i++) elementsOnScene[i].gObj.transform.parent = transform;
+        }
+        
     }
 
     private void setAnswerTraceryPazzle()
@@ -177,7 +187,7 @@ public class zoneLogic : MonoBehaviour
                         GameObject cube = GameObject.FindGameObjectWithTag("Cube");
                         cube.GetComponent<CubeLogic>().CreateCube();
                         for (int i = 0; i < 3; i++) elementsOnScene[i].gObj.transform.parent = transform;
-                        cam.GetComponent<Menu>().Save(level-1, 2);
+                        cam.GetComponent<Menu>().Save(level, 2);
                     }
                 }
             }

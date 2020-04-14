@@ -45,9 +45,9 @@ public  class Menu: MonoBehaviour
     {
        return PlayerPrefs.GetInt("stage");
     }
-    public int GetLevel()
+    public int GetLastLevel()
     {
-        return PlayerPrefs.GetInt("levels");
+        return lastLevel;
     }
 
 }

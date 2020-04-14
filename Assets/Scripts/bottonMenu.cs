@@ -22,7 +22,7 @@ public class bottonMenu : MonoBehaviour
         if ((transform.position.z < -5) && (direction == -1) && (contin))
         {
             GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
-            SceneManager.LoadScene("Level"+(cam.GetComponent<Menu>().GetLevel()+1), LoadSceneMode.Single);
+            SceneManager.LoadScene("Level"+(cam.GetComponent<Menu>().GetLastLevel()), LoadSceneMode.Single);
         }
         if ((transform.position.z < -5) && (direction == -1) && (!contin))
         {
