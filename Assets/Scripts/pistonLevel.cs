@@ -35,9 +35,11 @@ public class pistonLevel : MonoBehaviour
 
     public string  getLevel(int lvl)
     {
-        if (lvl == 1) return "558722880453100088040388448";
-        if (lvl == 2) return "558822880203100088025387848";
-        if (lvl == 3) return "558227815408800031040884888";
+        if (lvl == 1) return "8482228888100051378000000888888888";
+        if (lvl == 2) return "558722880453100088040388448";
+        if (lvl == 3) return "558822880203100088025387848";
+        if (lvl == 4) return "558227815408800031040884888";
+        if (lvl == 5) return "778828888802000880120088005328810010880000078888888";
         else return "";
     }
     public void setLevel (int lvl)
