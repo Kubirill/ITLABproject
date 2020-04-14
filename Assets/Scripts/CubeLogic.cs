@@ -157,39 +157,44 @@ public class CubeLogic : MonoBehaviour
     }
     private void CheckCube()
     {
-        bool correct = true;//предпологается изначально что куб собран правильно
-        for (int x = 0; x < xCount; x++)
+        GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+        if (cam.GetComponent<RotateCube>().targetLook == transform)
         {
-            for (int y = 0; y < yCount; y++)
+            bool correct = true;//предпологается изначально что куб собран правильно
+            for (int x = 0; x < xCount; x++)
             {
-                for (int z = 0; z < zCount; z++)
+                for (int y = 0; y < yCount; y++)
                 {
-                    int targetX = Arr[x, y, z] / 100;//разложить координаты хранящевося элемента
-                    int targetY = (Arr[x, y, z] / 10) % 10;
-                    int targetZ = Arr[x, y, z] % 10;
-                    targetX = targetX * 2 / (xCount - 1);// после этого   targetX будет  следующим образом превращен 0->0, max->2, остальное->1;
-                    targetY = targetY * 2 / (yCount - 1);
-                    targetZ = targetZ * 2 / (zCount - 1);
-                    //Debug.Log(targetX+ " " + targetY+ " "+ targetZ+" "+ Arr[x, y, z]);
-                    if (!((x * 2 / (xCount - 1) == targetX) && (y * 2 / (yCount - 1) == targetY) && (z * 2 / (zCount - 1) == targetZ))) correct = false;// если хоть одна координата не совпадает, то куб собран не правильно
+                    for (int z = 0; z < zCount; z++)
+                    {
+                        int targetX = Arr[x, y, z] / 100;//разложить координаты хранящевося элемента
+                        int targetY = (Arr[x, y, z] / 10) % 10;
+                        int targetZ = Arr[x, y, z] % 10;
+                        targetX = targetX * 2 / (xCount - 1);// после этого   targetX будет  следующим образом превращен 0->0, max->2, остальное->1;
+                        targetY = targetY * 2 / (yCount - 1);
+                        targetZ = targetZ * 2 / (zCount - 1);
+                        //Debug.Log(targetX+ " " + targetY+ " "+ targetZ+" "+ Arr[x, y, z]);
+                        if (!((x * 2 / (xCount - 1) == targetX) && (y * 2 / (yCount - 1) == targetY) && (z * 2 / (zCount - 1) == targetZ))) correct = false;// если хоть одна координата не совпадает, то куб собран не правильно
+                        if (!correct) break;// если куб не правильный то выйти из цикла
+                    }
                     if (!correct) break;// если куб не правильный то выйти из цикла
                 }
                 if (!correct) break;// если куб не правильный то выйти из цикла
             }
-            if (!correct) break;// если куб не правильный то выйти из цикла
+            if (correct)//еслли ошибок не найдено то перейти на следующий уровень
+            {
+                NextLevel();
+            }
         }
-        if (correct)//еслли ошибок не найдено то перейти на следующий уровень
-        {
-            NextLevel();
-        }
+        
 
     }
     public void NextLevel()
     {
         Debug.Log("next");
         GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
-        cam.GetComponent<Menu>().Save(lvl, 1);
         lvl++;
+        cam.GetComponent<Menu>().Save(lvl, 1);
         SceneManager.LoadScene("Level"+lvl, LoadSceneMode.Single);
     }
 

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public  class Menu: MonoBehaviour
 {
-
-    private int compliteLevel=0;
+    private int lastLevel = 1;
+    private int openLevel=1;
     private int stage = 1;
     public GameObject[] blocks;
 
@@ -14,12 +14,13 @@ public  class Menu: MonoBehaviour
     {
         if (PlayerPrefs.HasKey("levels"))
         {
-            compliteLevel = PlayerPrefs.GetInt("levels");
+            openLevel = PlayerPrefs.GetInt("levels");
+            lastLevel = PlayerPrefs.GetInt("lastLevel");
             stage = PlayerPrefs.GetInt("stage");
             blocks = GameObject.FindGameObjectsWithTag("block");
             foreach (GameObject block in blocks)
             {
-                if (block.name[5] - '0' <= compliteLevel + 1) GameObject.Destroy(block);
+                if (block.name[5] - '0' <= openLevel ) GameObject.Destroy(block);
             }
         }
 
@@ -27,8 +28,13 @@ public  class Menu: MonoBehaviour
 
     public void Save(int level,int stage)
     {
-        PlayerPrefs.SetInt("levels",level);
+        PlayerPrefs.SetInt("lastLevel", level);
         PlayerPrefs.SetInt("stage",stage);
+        if (lastLevel > openLevel)
+        {
+            openLevel = lastLevel;
+            PlayerPrefs.SetInt("levels", openLevel);
+        }
     }
     public void Save( int stage)
     {

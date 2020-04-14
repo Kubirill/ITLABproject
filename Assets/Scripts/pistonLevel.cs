@@ -271,7 +271,7 @@ public class pistonLevel : MonoBehaviour
         transform.position = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
         gameObject.GetComponent<Rigidbody>().mass = 100;
         GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
-        cam.GetComponent<Menu>().Save(level-1, 3);
+        cam.GetComponent<Menu>().Save(level, 3);
     }
 
     private void Lose()
