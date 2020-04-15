@@ -29,6 +29,7 @@ public class bottonMenu : MonoBehaviour
             GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
             SceneManager.LoadScene(gameObject.name, LoadSceneMode.Single);
             cam.GetComponent<Menu>().Save(1);
+            cam.GetComponent<Menu>().NewTime(0);
         }
     }
 }

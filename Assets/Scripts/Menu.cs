@@ -7,6 +7,7 @@ public  class Menu: MonoBehaviour
     private int lastLevel = 1;
     private int openLevel=1;
     private int stage = 1;
+    private int timeLevel=0;
     public GameObject[] blocks;
 
     // Start is called before the first frame update
@@ -17,6 +18,7 @@ public  class Menu: MonoBehaviour
             openLevel = PlayerPrefs.GetInt("levels");
             lastLevel = PlayerPrefs.GetInt("lastLevel");
             stage = PlayerPrefs.GetInt("stage");
+            timeLevel = PlayerPrefs.GetInt("timeLevel");
             blocks = GameObject.FindGameObjectsWithTag("block");
             foreach (GameObject block in blocks)
             {
@@ -39,6 +41,16 @@ public  class Menu: MonoBehaviour
     public void Save( int stage)
     {
         PlayerPrefs.SetInt("stage", stage);
+    }
+
+    public void NewTime(int time)
+    {
+        timeLevel=time;
+        PlayerPrefs.SetInt("timeLevel", time);
+    }
+    public int GetTime()
+    {
+        return PlayerPrefs.GetInt("timeLevel"); ;
     }
 
     public int GetStage()

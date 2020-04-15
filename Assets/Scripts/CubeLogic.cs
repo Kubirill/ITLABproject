@@ -195,6 +195,7 @@ public class CubeLogic : MonoBehaviour
         GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
         lvl++;
         cam.GetComponent<Menu>().Save(lvl, 1);
+        cam.GetComponent<Menu>().NewTime(0);
         SceneManager.LoadScene("Level"+lvl, LoadSceneMode.Single);
     }
 
