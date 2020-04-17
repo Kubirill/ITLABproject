@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class pistonLevel : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class pistonLevel : MonoBehaviour
     public GameObject gameCube;
     public int level=1;
     public Transform parent;
+    public Text second;
+    public Text third;
 
     private int xCount;
     private int yCount;
@@ -268,6 +272,8 @@ public class pistonLevel : MonoBehaviour
 
     private void Win()
     {
+        Destroy(second);
+        third.rectTransform.localPosition = third.rectTransform.localPosition - new Vector3(400, 0, 0);
         gameCube.transform.parent = null;
         gameObject.AddComponent<Rigidbody>();
         transform.position = new Vector3(transform.position.x, transform.position.y - 1, transform.position.z);
@@ -279,6 +285,7 @@ public class pistonLevel : MonoBehaviour
     private void Lose()
     {
         Debug.Log("lose");
+        SceneManager.LoadScene("menu", LoadSceneMode.Single);
     }
 
     private bool findTarget;
@@ -292,5 +299,6 @@ public class pistonLevel : MonoBehaviour
             findTarget = true;
         }
         if (transform.position.y < -50) Destroy(gameObject);
+        if (Input.GetKeyDown(KeyCode.R)) Lose();
     }
 }

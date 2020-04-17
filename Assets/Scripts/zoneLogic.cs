@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 public struct elementPosition
 {
     public GameObject gObj;
     public bool flipped;
     public float angle;
     public int id;
+    
     public static bool operator ==(elementPosition elsOne, elementPosition elsAns)
     {
         //Debug.Log(elsOne.angle + " " + elsAns.angle + " " + elsOne.flipped + " " + elsAns.flipped + " " + elsOne.id + " " + elsAns.id);
@@ -35,6 +37,8 @@ public class zoneLogic : MonoBehaviour
     public Transform answerBlock;
     public GameObject doorDown;
     public GameObject doorUp;
+    public Text first;
+    public Text second;
     private bool finish;
     //public GameObject[] elementsOnScene = new GameObject[3];
     public float speedRotate=1;
@@ -54,8 +58,11 @@ public class zoneLogic : MonoBehaviour
             cam.GetComponent<RotateCube>().enabled = true;
             cam.GetComponent<Inventory>().enabled = false;
             GameObject cube = GameObject.FindGameObjectWithTag("Cube");
+            GameObject.Destroy(first);
+            second.rectTransform.localPosition = second.rectTransform.localPosition - new Vector3(400, 0, 0);
             cube.GetComponent<CubeLogic>().CreateCube();
-            for (int i = 0; i < 3; i++) elementsOnScene[i].gObj.transform.parent = transform;
+            
+            
         }
         
     }
@@ -186,9 +193,11 @@ public class zoneLogic : MonoBehaviour
                         cam.GetComponent<Inventory>().enabled = false;
                         GameObject cube = GameObject.FindGameObjectWithTag("Cube");
                         cube.GetComponent<CubeLogic>().CreateCube();
+                        GameObject.Destroy(first);
+                        second.rectTransform.localPosition = second.rectTransform.localPosition - new Vector3(400, 0, 0);
                         for (int i = 0; i < 3; i++) elementsOnScene[i].gObj.transform.parent = transform;
                         cam.GetComponent<Menu>().Save(level, 2);
-                    }
+                                            }
                 }
             }
         }
@@ -198,8 +207,8 @@ public class zoneLogic : MonoBehaviour
             doorUp.transform.position = doorUp.transform.position + new Vector3(0, speedRotate*5, 0)*Time.deltaTime;
             if (doorDown.transform.position.y < -20)
             {
-                Destroy(doorDown);
-                Destroy(doorUp);
+                GameObject.Destroy(doorDown);
+                GameObject.Destroy(doorUp);
                 for (int i = 0; i < 3; i++) Destroy(elementsOnScene[i].gObj);
             }
             
