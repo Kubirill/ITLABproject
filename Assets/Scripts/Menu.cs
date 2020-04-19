@@ -4,10 +4,6 @@ using UnityEngine;
 
 public  class Menu: MonoBehaviour
 {
-    private int lastLevel = 1;
-    private int openLevel=1;
-    private int stage = 1;
-    private int timeLevel=0;
     public GameObject[] blocks;
 
     // Start is called before the first frame update
@@ -15,27 +11,32 @@ public  class Menu: MonoBehaviour
     {
         if (PlayerPrefs.HasKey("levels"))//проверка наличия ключа
         {
-            openLevel = PlayerPrefs.GetInt("levels");//загружаем все ключи
-            lastLevel = PlayerPrefs.GetInt("lastLevel");
-            stage = PlayerPrefs.GetInt("stage");
-            timeLevel = PlayerPrefs.GetInt("timeLevel");
             blocks = GameObject.FindGameObjectsWithTag("block");//находим все блоки
             foreach (GameObject block in blocks)
             {
-                if (block.name[5] - '0' <= openLevel ) GameObject.Destroy(block);//если в имени блока цифра соответсвует пройденным уровням, то уничтожаем его
+                if (block.name[5] - '0' <= PlayerPrefs.GetInt("levels")) GameObject.Destroy(block);//если в имени блока цифра соответсвует пройденным уровням, то уничтожаем его
             }
         }
 
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            PlayerPrefs.DeleteKey("levels");
+            PlayerPrefs.DeleteKey("lastLevel");
+            PlayerPrefs.DeleteKey("stage");
+            PlayerPrefs.DeleteKey("timeLevel");
+        }
     }
 
     public void Save(int level,int stage)//сохранения уровня и стадии
     {
         PlayerPrefs.SetInt("lastLevel", level);//добавляем ключи
         PlayerPrefs.SetInt("stage",stage);
-        if (lastLevel > openLevel)//если сохранеённый уровень больше пройденных, то..
+        if (PlayerPrefs.GetInt("lastLevel") > PlayerPrefs.GetInt("levels"))//если сохранеённый уровень больше пройденных, то..
         {
-            openLevel = lastLevel;//пройденный уровень приравнивается к последнему
-            PlayerPrefs.SetInt("levels", openLevel);
+            PlayerPrefs.SetInt("levels", level);
         }
     }
     public void Save( int stage)//сохранить садию
@@ -45,7 +46,6 @@ public  class Menu: MonoBehaviour
 
     public void NewTime(int time)//сохранить время
     {
-        timeLevel=time;
         PlayerPrefs.SetInt("timeLevel", time);
     }
     public int GetTime()//получить время
@@ -59,7 +59,7 @@ public  class Menu: MonoBehaviour
     }
     public int GetLastLevel()//получить уровень
     {
-        return lastLevel;
+        return PlayerPrefs.GetInt("lastLevel");
     }
 
 }

@@ -173,7 +173,7 @@ public class CubeLogic : MonoBehaviour
                         targetX = targetX * 2 / (xCount - 1);// после этого   targetX будет  следующим образом превращен 0->0, max->2, остальное->1;
                         targetY = targetY * 2 / (yCount - 1);
                         targetZ = targetZ * 2 / (zCount - 1);
-                        //Debug.Log(targetX+ " " + targetY+ " "+ targetZ+" "+ Arr[x, y, z]);
+                        Debug.Log(targetX+ " " + targetY+ " "+ targetZ+" "+ Arr[x, y, z]);
                         if (!((x * 2 / (xCount - 1) == targetX) && (y * 2 / (yCount - 1) == targetY) && (z * 2 / (zCount - 1) == targetZ))) correct = false;// если хоть одна координата не совпадает, то куб собран не правильно
                         if (!correct) break;// если куб не правильный то выйти из цикла
                     }

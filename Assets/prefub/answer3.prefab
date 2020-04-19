@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 2313603708006444339}
   - component: {fileID: 6719534400000694021}
   - component: {fileID: 1043741667032886268}
-  - component: {fileID: 3108830155726453020}
   - component: {fileID: 3782413457443626674}
   m_Layer: 0
-  m_Name: figure1 (1)
+  m_Name: answer3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,21 +82,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &3108830155726453020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1603505254758276896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 989e26555fdcee3409968a431a35eccb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 2
-  cam: {fileID: 0}
-  flip: 0
 --- !u!65 &3782413457443626674
 BoxCollider:
   m_ObjectHideFlags: 0

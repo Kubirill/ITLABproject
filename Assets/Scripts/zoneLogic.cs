@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+
 public struct elementPosition //структура снежинок в игре
 {
     public GameObject gObj;//сам объект
@@ -29,6 +30,7 @@ public struct elementPosition //структура снежинок в игре
         return !(elPos == elsAns);//вернуть не оператор равенства
     }
 }
+
 public class zoneLogic : MonoBehaviour
 {
     public GameObject[] elements;//элементы узоров
