@@ -13,51 +13,51 @@ public  class Menu: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (PlayerPrefs.HasKey("levels"))
+        if (PlayerPrefs.HasKey("levels"))//проверка наличия ключа
         {
-            openLevel = PlayerPrefs.GetInt("levels");
+            openLevel = PlayerPrefs.GetInt("levels");//загружаем все ключи
             lastLevel = PlayerPrefs.GetInt("lastLevel");
             stage = PlayerPrefs.GetInt("stage");
             timeLevel = PlayerPrefs.GetInt("timeLevel");
-            blocks = GameObject.FindGameObjectsWithTag("block");
+            blocks = GameObject.FindGameObjectsWithTag("block");//находим все блоки
             foreach (GameObject block in blocks)
             {
-                if (block.name[5] - '0' <= openLevel ) GameObject.Destroy(block);
+                if (block.name[5] - '0' <= openLevel ) GameObject.Destroy(block);//если в имени блока цифра соответсвует пройденным уровням, то уничтожаем его
             }
         }
 
     }
 
-    public void Save(int level,int stage)
+    public void Save(int level,int stage)//сохранения уровня и стадии
     {
-        PlayerPrefs.SetInt("lastLevel", level);
+        PlayerPrefs.SetInt("lastLevel", level);//добавляем ключи
         PlayerPrefs.SetInt("stage",stage);
-        if (lastLevel > openLevel)
+        if (lastLevel > openLevel)//если сохранеённый уровень больше пройденных, то..
         {
-            openLevel = lastLevel;
+            openLevel = lastLevel;//пройденный уровень приравнивается к последнему
             PlayerPrefs.SetInt("levels", openLevel);
         }
     }
-    public void Save( int stage)
+    public void Save( int stage)//сохранить садию
     {
         PlayerPrefs.SetInt("stage", stage);
     }
 
-    public void NewTime(int time)
+    public void NewTime(int time)//сохранить время
     {
         timeLevel=time;
         PlayerPrefs.SetInt("timeLevel", time);
     }
-    public int GetTime()
+    public int GetTime()//получить время
     {
         return PlayerPrefs.GetInt("timeLevel"); ;
     }
 
-    public int GetStage()
+    public int GetStage()//получить стадию
     {
        return PlayerPrefs.GetInt("stage");
     }
-    public int GetLastLevel()
+    public int GetLastLevel()//получить уровень
     {
         return lastLevel;
     }

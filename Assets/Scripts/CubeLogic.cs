@@ -158,7 +158,7 @@ public class CubeLogic : MonoBehaviour
     private void CheckCube()
     {
         GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
-        if (cam.GetComponent<RotateCube>().targetLook == transform)
+        if (cam.GetComponent<RotateCube>().targetLook == transform)//проверка правильности сборки если только камера нацелена на кубик
         {
             bool correct = true;//предпологается изначально что куб собран правильно
             for (int x = 0; x < xCount; x++)
@@ -189,17 +189,17 @@ public class CubeLogic : MonoBehaviour
         
 
     }
-    public void NextLevel()
+    public void NextLevel()//следующий уровень
     {
-        Debug.Log("next");
-        GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
-        lvl++;
-        cam.GetComponent<Menu>().Save(lvl, 1);
-        cam.GetComponent<Menu>().NewTime(0);
-        SceneManager.LoadScene("Level"+lvl, LoadSceneMode.Single);
+        //Debug.Log("next");
+        GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");//находим камеру
+        lvl++;//прибавляем к уровню 1
+        cam.GetComponent<Menu>().Save(lvl, 1);//сохраняем следующий ровень со стадией 1
+        cam.GetComponent<Menu>().NewTime(0);//обнуляем время
+        SceneManager.LoadScene("Level"+lvl, LoadSceneMode.Single);//загружаем следующий уровень
     }
 
-    public void getArray()
+    public void getArray()//для дебага
     {
         for (int x = 0; x < xCount; x++)
         {

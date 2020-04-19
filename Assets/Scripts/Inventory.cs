@@ -109,11 +109,11 @@ public class Inventory : MonoBehaviour
         GUI.DragWindow();
     }
 
-    public string UseElement()
+    public string UseElement()//исползовать элемент
     {
-        string var = selectItem.Name;
-        isDraggable = false;
-        selectItem = null;
-        return var;
+        string var = selectItem.Name;//запоимнаем имя перетаскиваемого элемента
+        isDraggable = false;//прекращаем передвижение
+        selectItem = null;//сбрасываем объект
+        return var;//возвращаем имя
     }
 }

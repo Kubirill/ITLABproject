@@ -11,7 +11,7 @@ public class MovingObjectPistonLevel : MonoBehaviour
     {
         Xcoor = newX;
         Ycoor = newY;
-        transform.localPosition = new Vector3(-(Xcoor - (maxX - 1) * 0.5f), 1, (Ycoor - (maxY - 1) * 0.5f));
+        transform.localPosition = new Vector3(-(Xcoor - (maxX - 1) * 0.5f), 1, (Ycoor - (maxY - 1) * 0.5f));//изменить позицию
 
     }
 }
